@@ -2,6 +2,7 @@ package com.degson.fire.service;
 
 import java.util.List;
 import com.degson.fire.domain.SysFirerecord;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * 检查记录Service接口
@@ -60,4 +61,8 @@ public interface ISysFirerecordService
     public int deleteSysFirerecordByRecordId(Long recordId);
 
     public int uni(String qrContent, String image);
+
+    int uniphoto(@Param("fireId")Long fireId, @Param("image")String image);
+
+//    int uniphoto2( @Param("recordId")Long recordId, @Param("image")String image);
 }

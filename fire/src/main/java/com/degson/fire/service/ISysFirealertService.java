@@ -58,4 +58,6 @@ public interface ISysFirealertService
      * @return 结果
      */
     public int deleteSysFirealertById(Long id);
+
+    int updateSysFirealert2(SysFirealert sysFirealert);
 }
