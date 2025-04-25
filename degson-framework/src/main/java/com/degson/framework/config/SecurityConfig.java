@@ -121,7 +121,7 @@ public class SecurityConfig
                 // 静态资源，可匿名访问
                 .antMatchers(HttpMethod.GET, "/", "/*.html", "/**/*.html", "/**/*.css", "/**/*.js", "/profile/**","/qrcode/qrcode/wxGetUserInfor","/qrcode/qrcode/**","/fire/firefighting/list","/fire/firefighting/getlist","/record/record/query","/alert/alert/list").permitAll()
                 .antMatchers(HttpMethod.POST,"/common/upload","/fire/firefighting/uni","/qrcode/qrcode/verify","/qrcode/qrcode/addXinxi","/fire/firefighting/getlist","/record/record/add","/fire/firefighting/update","/record/record/uniphoto").permitAll()
-                        .antMatchers(HttpMethod.PUT,"/fire/firefighting/edit","/record/record/uniphoto").permitAll()
+                        .antMatchers(HttpMethod.PUT,"/fire/firefighting/edit","/record/record/uniphoto","/alert/alert/update2").permitAll()
                         .antMatchers("/swagger-ui.html", "/swagger-resources/**", "/webjars/**", "/*/api-docs", "/druid/**","/qrcode/qrcode/verify","/qrcode/qrcode/addXinxi").permitAll()
                 // 除上面外的所有请求全部需要鉴权认证
                 .anyRequest().authenticated();
