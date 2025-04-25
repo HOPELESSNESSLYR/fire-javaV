@@ -4,7 +4,10 @@ import java.io.IOException;
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 
+import com.beust.jcommander.Parameter;
 import com.degson.fire.domain.Uniapp;
+import com.degson.fire.domain.Uniphoto;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -109,19 +112,27 @@ public class SysFirerecordController extends BaseController
     /**
      * 小程序
      */
-    @PostMapping("uni")
-    public int uni(@RequestBody Uniapp uniapp) throws IOException {
-        String qrContent = uniapp.getQrContent();
-        String image = uniapp.getImage();
-        System.out.println("image = " + image);
-        System.out.println("qrContent = " + qrContent);
-        return sysFirerecordService.uni(qrContent, image);
+    @PostMapping("/uniphoto")
+    public int uniphoto(@RequestBody Uniphoto uniphoto) throws IOException {
+        Long fireId = uniphoto.getFireId();
+        String image = uniphoto.getImage();
+//        System.out.println("image = " + image);
+//        System.out.println("recordId = " + recordId);
+        return sysFirerecordService.uniphoto(fireId, image);
     }
+//    @PostMapping("/uniphoto2")
+//    public int uniphoto2(@RequestBody Uniphoto uniphoto) throws IOException {
+//        Long recordId = uniphoto.getRecordId();
+//        String image = uniphoto.getImage();
+//        return sysFirerecordService.uniphoto2(recordId, image);
+//    }
 
     @PostMapping("add")
     public AjaxResult addd(@RequestBody SysFirerecord sysFirerecord)
     {
         return toAjax(sysFirerecordService.insertSysFirerecord(sysFirerecord));
     }
+
+
 
 }

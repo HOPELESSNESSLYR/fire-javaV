@@ -90,6 +90,12 @@ public class SysFirealertController extends BaseController
     {
         return toAjax(sysFirealertService.updateSysFirealert(sysFirealert));
     }
+    @PreAuthorize("@ss.hasPermi('alert:alert:edit')")
+    @PutMapping("update2")
+    public AjaxResult edit2(@RequestBody SysFirealert sysFirealert)
+    {
+        return toAjax(sysFirealertService.updateSysFirealert2(sysFirealert));
+    }
 
     /**
      * 删除预警报警

@@ -161,4 +161,20 @@ public class SysFirefightingController extends BaseController
         List<SysFirefighting> list = sysFirefightingService.selectSysFirefightingList(sysFirefighting);
         return list;
     }
+
+    /**
+     * 新增照片字段
+     */
+//    @PostMapping("uniphoto")
+//    public  List<SysFirefighting>  uniPhoto(@RequestBody Uniapp uniapp) throws IOException {
+//
+//        String qrContent = uniapp.getQrContent();
+//        String image = uniapp.getImage();
+//        SysFirefighting sysFirefighting = new SysFirefighting();
+//        sysFirefighting.setQrContent(qrContent);
+//        System.out.println("image = " + image);
+//        System.out.println("qrContent = " + qrContent);
+//        List<SysFirefighting> list = sysFirefightingService.selectSysFirefightingList(sysFirefighting);
+//        return sysFirefightingService.uniPhoto(qrContent, image);
+//    }
 }
