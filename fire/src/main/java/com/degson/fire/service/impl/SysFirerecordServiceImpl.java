@@ -1,8 +1,10 @@
 package com.degson.fire.service.impl;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 import com.degson.common.utils.DateUtils;
+import com.google.zxing.WriterException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.degson.fire.mapper.SysFirerecordMapper;
@@ -102,4 +104,17 @@ public class SysFirerecordServiceImpl implements ISysFirerecordService
 
         return sysFirerecordMapper.uni(qrContent,image,currentDateString);
     }
+
+    @Override
+    public int uniphoto(Long fireId, String image) {
+        System.out.println("fireId = " + fireId);
+        System.out.println("image = " + image);
+        return sysFirerecordMapper.uniphoto(fireId,image);
+    }
+//    @Override
+//    public int uniphoto2(Long recordId, String image) {
+//        System.out.println("fireId = " + recordId);
+//        System.out.println("image = " + image);
+//        return sysFirerecordMapper.uniphoto2(recordId,image);
+//    }
 }

@@ -207,4 +207,5 @@ public class SysQrcodeServiceImpl implements ISysQrcodeService
     public SysQrcode getForm(String openid) {
         return sysQrcodeMapper.getForm(openid);
     }
+
 }

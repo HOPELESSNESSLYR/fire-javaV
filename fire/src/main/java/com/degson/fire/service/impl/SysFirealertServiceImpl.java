@@ -1,7 +1,14 @@
 package com.degson.fire.service.impl;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import com.degson.common.utils.DateUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.degson.fire.mapper.SysFirealertMapper;
@@ -17,6 +24,8 @@ import com.degson.fire.service.ISysFirealertService;
 @Service
 public class SysFirealertServiceImpl implements ISysFirealertService 
 {
+    private static final Logger log = LoggerFactory.getLogger(SysFirealertServiceImpl.class);
+
     @Autowired
     private SysFirealertMapper sysFirealertMapper;
 
@@ -53,7 +62,15 @@ public class SysFirealertServiceImpl implements ISysFirealertService
     @Override
     public int insertSysFirealert(SysFirealert sysFirealert)
     {
-        sysFirealert.setAlertTime(DateUtils.getNowDate());
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date()); // 设置时间为当前时间
+        calendar.set(Calendar.HOUR_OF_DAY, 0); // 将小时设置为0
+        calendar.set(Calendar.MINUTE, 0); // 将分钟设置为0
+        calendar.set(Calendar.SECOND, 0); // 将秒设置为0
+        calendar.set(Calendar.MILLISECOND, 0); // 将毫秒设置为0
+        Date nowDate = calendar.getTime(); // 获取没有时间的日期
+
+        sysFirealert.setAlertTime(nowDate);
         sysFirealert.setCreateTime(DateUtils.getNowDate());
         return sysFirealertMapper.insertSysFirealert(sysFirealert);
     }
@@ -67,13 +84,45 @@ public class SysFirealertServiceImpl implements ISysFirealertService
     @Override
     public int updateSysFirealert(SysFirealert sysFirealert)
     {
-        sysFirealert.setAlertTime(DateUtils.getNowDate());
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date()); // 设置时间为当前时间
+        calendar.set(Calendar.HOUR_OF_DAY, 0); // 将小时设置为0
+        calendar.set(Calendar.MINUTE, 0); // 将分钟设置为0
+        calendar.set(Calendar.SECOND, 0); // 将秒设置为0
+        calendar.set(Calendar.MILLISECOND, 0); // 将毫秒设置为0
+        Date nowDate = calendar.getTime(); // 获取没有时间的日期
+
+//        Date alertDate = sysFirealert.getAlertTime();
+//        if (alertDate != nowDate) {
+//        }
+        sysFirealert.setAlertTime(nowDate);
         sysFirealert.setUpdateTime(DateUtils.getNowDate());
+//        log.info("修改预警报警：{}",sysFirealert);
 //        return sysFirealertMapper.updateSysFirealert(sysFirealert);
         return sysFirealertMapper.updateLert(sysFirealert);
     }
+    @Override
+    public int updateSysFirealert2(SysFirealert sysFirealert)
+    {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date()); // 设置时间为当前时间
+        calendar.set(Calendar.HOUR_OF_DAY, 0); // 将小时设置为0
+        calendar.set(Calendar.MINUTE, 0); // 将分钟设置为0
+        calendar.set(Calendar.SECOND, 0); // 将秒设置为0
+        calendar.set(Calendar.MILLISECOND, 0); // 将毫秒设置为0
+        Date nowDate = calendar.getTime(); // 获取没有时间的日期
 
-    /**
+        Date alertDate = sysFirealert.getAlertTime();
+
+        if (alertDate != nowDate) {
+            sysFirealert.setAlertTime(nowDate);
+            sysFirealert.setUpdateTime(DateUtils.getNowDate());
+        }
+        return sysFirealertMapper.updateLert(sysFirealert);
+    }
+
+
+    /**vdf
      * 批量删除预警报警
      * 
      * @param ids 需要删除的预警报警主键
