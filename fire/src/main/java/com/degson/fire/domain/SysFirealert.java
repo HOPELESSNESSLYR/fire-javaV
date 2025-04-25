@@ -100,12 +100,12 @@ public class SysFirealert extends BaseEntity
     {
         return alertRecord;
     }
-    public void setAlertTime(Date alertTime) 
+    public void setAlertTime(Date alertTime)
     {
         this.alertTime = alertTime;
     }
 
-    public Date getAlertTime() 
+    public Date getAlertTime()
     {
         return alertTime;
     }

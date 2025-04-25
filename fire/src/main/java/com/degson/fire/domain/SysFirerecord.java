@@ -17,6 +17,7 @@ public class SysFirerecord extends BaseEntity
     private static final long serialVersionUID = 1L;
 
     /** 检查流水主键 */
+    @Excel(name = "检查流水主键")
     private Long recordId;
 
     /** $column.columnComment */
@@ -42,6 +43,18 @@ public class SysFirerecord extends BaseEntity
     @JsonFormat(pattern = "yyyy-MM-dd")
     @Excel(name = "检查记录", width = 30, dateFormat = "yyyy-MM-dd")
     private String checkRecords;
+
+    /** 设备图片 */
+    @Excel(name = "设备图片")
+    private String image;
+
+    /** 是否合格 */
+    @Excel(name = "是否合格")
+    private String qualified;
+
+    /** 反馈信息 */
+    @Excel(name = "反馈信息")
+    private String feedback;
 
     public void setRecordId(Long recordId) 
     {
@@ -106,6 +119,33 @@ public class SysFirerecord extends BaseEntity
     {
         return checkRecords;
     }
+    public void setImage(String image)
+    {
+        this.image = image;
+    }
+
+    public String getImage()
+    {
+        return image;
+    }
+    public void setQualified(String qualified)
+{
+    this.qualified = qualified;
+}
+
+    public String getQualified()
+    {
+        return qualified;
+    }
+    public void setFeedback(String feedback)
+    {
+        this.feedback = feedback;
+    }
+
+    public String getFeedback()
+    {
+        return feedback;
+    }
 
     @Override
     public String toString() {
@@ -117,6 +157,9 @@ public class SysFirerecord extends BaseEntity
                 .append("locate", getLocate())
             .append("pointCheck", getPointCheck())
             .append("checkRecords", getCheckRecords())
+                .append("image", getImage())
+                .append("qualified", getQualified())
+                .append("feedback", getFeedback())
             .append("createBy", getCreateBy())
             .append("createTime", getCreateTime())
             .append("updateBy", getUpdateBy())
