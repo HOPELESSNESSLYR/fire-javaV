@@ -12,6 +12,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="locate"    column="locate"    />
         <result property="pointCheck"    column="point_check"    />
         <result property="checkRecords"    column="check_records"    />
+        <result property="image"    column="image"    />
+        <result property="qualified"    column="qualified"    />
+        <result property="feedback"    column="feedback"    />
         <result property="createBy"    column="create_by"    />
         <result property="createTime"    column="create_time"    />
         <result property="updateBy"    column="update_by"    />
@@ -19,7 +22,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </resultMap>
 
     <sql id="selectSysFirerecordVo">
-        select record_id, fire_id, device_name, device_model, locate, point_check, check_records, create_by, create_time, update_by, update_time from sys_firerecord
+        select record_id, fire_id, device_name, device_model, locate, point_check, check_records,image, qualified, feedback, create_by, create_time, update_by, update_time from sys_firerecord
     </sql>
 
     <select id="selectSysFirerecordList" parameterType="SysFirerecord" resultMap="SysFirerecordResult">
@@ -31,6 +34,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="locate != null  and locate != ''"> and locate = #{locate}</if>
             <if test="pointCheck != null  and pointCheck != ''"> and point_check like concat('%', #{pointCheck}, '%')</if>
             <if test="checkRecords != null  and checkRecords != ''"> and check_records = #{checkRecords}</if>
+            <if test="image != null  and image != ''"> and image = #{image}</if>
+            <if test="qualified != null  and qualified != ''"> and qualified = #{qualified}</if>
+            <if test="feedback != null  and feedback != ''"> and feedback = #{feedback}</if>
         </where>
         order by check_records desc
     </select>
@@ -50,6 +56,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="locate != null">locate,</if>
             <if test="pointCheck != null">point_check,</if>
             <if test="checkRecords != null">check_records,</if>
+            <if test="image != null">image,</if>
+            <if test="qualified != null">qualified,</if>
+            <if test="feedback != null">feedback,</if>
             <if test="createBy != null">create_by,</if>
             <if test="createTime != null">create_time,</if>
             <if test="updateBy != null">update_by,</if>
@@ -63,6 +72,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="locate != null">#{locate},</if>
             <if test="pointCheck != null">#{pointCheck},</if>
             <if test="checkRecords != null">#{checkRecords},</if>
+            <if test="image != null">#{image},</if>
+            <if test="qualified != null">#{qualified},</if>
+            <if test="feedback != null">#{feedback},</if>
             <if test="createBy != null">#{createBy},</if>
             <if test="createTime != null">#{createTime},</if>
             <if test="updateBy != null">#{updateBy},</if>
@@ -79,6 +91,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="locate != null">locate = #{locate},</if>
             <if test="pointCheck != null">point_check = #{pointCheck},</if>
             <if test="checkRecords != null">check_records = #{checkRecords},</if>
+            <if test="image != null">image = #{image},</if>
+            <if test="qualified != null">qualified = #{qualified},</if>
+            <if test="feedback != null">feedback = #{feedback},</if>
             <if test="createBy != null">create_by = #{createBy},</if>
             <if test="createTime != null">create_time = #{createTime},</if>
             <if test="updateBy != null">update_by = #{updateBy},</if>
@@ -103,4 +118,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         set image = #{image},check_records = #{currentDateString}
         where qr_content = #{qrContent}
     </insert>
+    <update id="uniphoto"  parameterType="SysFirerecord">
+        update sys_firerecord
+        set image = #{image}
+        where fire_id = #{fireId}
+        ORDER BY create_time DESC
+        LIMIT 1
+--         where fire_id = (
+--             SELECT fire_id FROM sys_firerecord
+--             ORDER BY create_time DESC
+--             LIMIT 1
+--         )
+    </update>
+<!--    <update id="uniphoto2"  parameterType="SysFirerecord">-->
+<!--        update sys_firerecord-->
+<!--        set image = #{image}-->
+<!--        where record_id = #{recordId}-->
+<!--    </update>-->
+    <select id="infor" parameterType="SysFirerecord" resultMap="SysFirerecordResult">
+        select *  from sys_firerecord where fire_id = #{fireId}
+    </select>
 </mapper>
