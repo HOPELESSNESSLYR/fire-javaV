@@ -2,6 +2,7 @@ package com.degson.fire.service.impl;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
 import com.degson.common.utils.DateUtils;
 import com.google.zxing.WriterException;
@@ -110,6 +111,11 @@ public class SysFirerecordServiceImpl implements ISysFirerecordService
         System.out.println("fireId = " + fireId);
         System.out.println("image = " + image);
         return sysFirerecordMapper.uniphoto(fireId,image);
+    }
+
+    @Override
+    public List<SysFirerecord> infor(Long fireId) {
+        return sysFirerecordMapper.infor(fireId);
     }
 //    @Override
 //    public int uniphoto2(Long recordId, String image) {

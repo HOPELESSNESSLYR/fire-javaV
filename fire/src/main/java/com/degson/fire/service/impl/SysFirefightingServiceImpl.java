@@ -224,4 +224,8 @@ public class SysFirefightingServiceImpl implements ISysFirefightingService
         return successMsg.toString();
     }
 
+    @Override
+    public int infor(String qrContent) {
+        return sysFirefightingMapper.infor(qrContent);
+    }
 }
