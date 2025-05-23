@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 
 import com.beust.jcommander.Parameter;
+import com.degson.fire.domain.Information;
 import com.degson.fire.domain.Uniapp;
 import com.degson.fire.domain.Uniphoto;
 import org.apache.ibatis.annotations.Param;
@@ -43,7 +44,7 @@ public class SysFirerecordController extends BaseController
     /**
      * 查询检查记录列表
      */
-    @PreAuthorize("@ss.hasPermi('record:record:list')")
+//    @PreAuthorize("@ss.hasPermi('record:record:list')")
     @GetMapping("/list")
     public TableDataInfo list(SysFirerecord sysFirerecord)
     {
@@ -133,6 +134,11 @@ public class SysFirerecordController extends BaseController
         return toAjax(sysFirerecordService.insertSysFirerecord(sysFirerecord));
     }
 
-
+    @PostMapping("infor")
+    public List<SysFirerecord> infor(@RequestBody Information information)
+    {
+        Long fireId = information.getFireId();
+        return sysFirerecordService.infor(fireId);
+    }
 
 }

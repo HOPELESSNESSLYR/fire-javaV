@@ -1,5 +1,6 @@
 package com.degson.fire.controller;
 
+import com.degson.fire.domain.Information;
 import com.degson.fire.domain.Uniapp;
 import com.degson.fire.mapper.SysFirefightingMapper;
 import com.degson.fire.service.impl.SysFirefightingServiceImpl;
@@ -177,4 +178,12 @@ public class SysFirefightingController extends BaseController
 //        List<SysFirefighting> list = sysFirefightingService.selectSysFirefightingList(sysFirefighting);
 //        return sysFirefightingService.uniPhoto(qrContent, image);
 //    }
+
+    @PostMapping("infor")
+    public int infor(@RequestBody Information information) {
+        String qrContent = information.getQrContent();
+//        Long fireId = information.getFireId();
+        return sysFirefightingService.infor(qrContent);
+    }
+
 }
