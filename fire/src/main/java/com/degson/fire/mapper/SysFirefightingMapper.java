@@ -65,4 +65,7 @@ public interface SysFirefightingMapper
     public int uni(@Param("qrContent") String qrContent, @Param("image") String image, @Param("currentDateString") String currentDateString);
 
     public int updateSysFire(SysFirefighting sysFirefighting);
+
+
+    int infor(String qrContent);
 }

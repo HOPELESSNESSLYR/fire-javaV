@@ -64,5 +64,7 @@ public interface SysFirerecordMapper
 
     int uniphoto(@Param("fireId")Long fireId, @Param("image")String image);
 
+    List<SysFirerecord> infor(Long fireId);
+
 //    int uniphoto2(@Param("recordId")Long recordId, @Param("image")String image);
 }
