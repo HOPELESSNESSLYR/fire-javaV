@@ -1,6 +1,8 @@
 package com.degson.fire.service;
 
 import java.util.List;
+
+import com.degson.common.core.domain.AjaxResult;
 import com.degson.fire.domain.SysFirerecord;
 import org.apache.ibatis.annotations.Param;
 
@@ -63,6 +65,8 @@ public interface ISysFirerecordService
     public int uni(String qrContent, String image);
 
     int uniphoto(@Param("fireId")Long fireId, @Param("image")String image);
+
+    public  List<SysFirerecord> infor(Long fireId);
 
 //    int uniphoto2( @Param("recordId")Long recordId, @Param("image")String image);
 }

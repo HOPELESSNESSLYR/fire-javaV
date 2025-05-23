@@ -79,4 +79,7 @@ public interface ISysFirefightingService
 
     public String importSysFirefightinginfor(List<SysFirefighting> sysFirefightingList, boolean isUpdateSupport, String operName) ;
 
+
+
+    int infor(String qrContent);
 }
