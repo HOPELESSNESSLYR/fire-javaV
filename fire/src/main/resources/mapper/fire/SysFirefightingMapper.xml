@@ -165,4 +165,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         update sys_firefighting set point_check = #{pointCheck}
         where fire_id = #{fireId}
     </update>
+
+    <select id="infor" parameterType="String">
+        select fire_id from sys_firefighting
+        where qr_content = #{qrContent}
+    </select>
 </mapper>
